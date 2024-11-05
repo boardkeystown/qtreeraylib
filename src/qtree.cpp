@@ -8,16 +8,14 @@ void QTree::subdivide() {
     this->southwest = std::make_unique<QTree>(this->bounds.southwest());
     this->divided = true;
 
-    // // TODO: move points down to kids to keep bubbling down
-    // move points down
-    // for (const auto &point : this->points) {
-    //     bool inserted = 
-    //      this->northeast->insert(point) ||
-    //      this->northwest->insert(point) ||
-    //      this->southeast->insert(point) ||
-    //      this->southwest->insert(point);
-    // }
-    // this->points.clear();
+    // move points down to kids to keep bubbling down
+    for (const auto &point : this->points) {
+         (void)(this->northeast->insert(point) ||
+                this->northwest->insert(point) ||
+                this->southeast->insert(point) ||
+                this->southwest->insert(point));
+    }
+    this->points.clear();
 }
 
 // public 
